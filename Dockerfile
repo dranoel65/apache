@@ -2,6 +2,7 @@ FROM ubuntu:latest
 
 # set a directory for the app
 RUN apt-get update
+#RUN apt-get upgrade -y
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/Bogota
 RUN apt install -y apache2
@@ -17,7 +18,8 @@ COPY ./index.html /var/www/html/index.html
 # RUN pip install --no-cache-dir -r requirements.txt
 
 # tell the port number the container should expose
-#EXPOSE 80
+EXPOSE 80
 
 # run the command
 # CMD ["nginx"]
+CMD apachectl -D FOREGROUND
